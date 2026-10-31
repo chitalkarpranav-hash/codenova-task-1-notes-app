@@ -183,14 +183,18 @@ class NotesHandler(SimpleHTTPRequestHandler):
         print(f"[{self.log_date_time_string()}] {format % args}")
 
 
-def create_server(database_path: Path = DEFAULT_DATABASE_PATH, port: int = 8000) -> ThreadingHTTPServer:
+def create_server(
+    database_path: Path = DEFAULT_DATABASE_PATH,
+    port: int = 8000,
+    host: str = "127.0.0.1",
+) -> ThreadingHTTPServer:
     NotesHandler.repository = NotesRepository(database_path)
-    return ThreadingHTTPServer(("127.0.0.1", port), NotesHandler)
+    return ThreadingHTTPServer((host, port), NotesHandler)
 
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", "8000"))
-    server = create_server(port=port)
+    server = create_server(port=port, host=os.getenv("HOST", "0.0.0.0"))
     print(f"NoteNest is running at http://localhost:{port}")
     try:
         server.serve_forever()
