@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#6046e8" />
+    <title>NoteNest | Your ideas, organized</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="orb orb-one" aria-hidden="true"></div>
+    <div class="orb orb-two" aria-hidden="true"></div>
+    <div class="orb orb-three" aria-hidden="true"></div>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow hero-eyebrow"><span aria-hidden="true">✦</span> YOUR PRIVATE SPACE</p>
+          <h1>Note<span>Nest</span></h1>
+          <p class="subtitle">Capture the thought. Keep the momentum.</p>
+        </div>
+        <div class="hero-side">
+          <p id="today-label" class="today-label"></p>
+          <div class="note-count" aria-live="polite"><span id="note-count">0</span> notes</div>
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="Notes workspace">
+        <form id="note-form" class="composer" novalidate>
+          <div class="composer-heading">
+            <div>
+              <p class="eyebrow" id="form-kicker">NEW NOTE</p>
+              <h2 id="form-title">What's on your mind?</h2>
+            </div>
+            <button class="text-button hidden" id="cancel-edit" type="button">Cancel edit</button>
+          </div>
+          <div class="writing-tip"><span aria-hidden="true">✦</span> Small thoughts become big ideas.</div>
+          <label class="sr-only" for="note-title">Note title</label>
+          <input id="note-title" name="title" maxlength="120" placeholder="Give this thought a title" required />
+          <label class="sr-only" for="note-content">Note content</label>
+          <textarea id="note-content" name="content" maxlength="10000" placeholder="Write freely..." required></textarea>
+          <div class="composer-footer">
+            <span id="character-count">0 / 10,000</span>
+            <button class="primary-button" id="save-button" type="submit">Save note <span aria-hidden="true">↗</span></button>
+          </div>
+        </form>
+
+        <section class="library" aria-label="Your notes">
+          <div class="library-heading">
+            <div>
+              <p class="eyebrow">YOUR LIBRARY</p>
+              <h2>Recent notes</h2>
+            </div>
+            <label class="search-box" for="search-input">
+              <span aria-hidden="true">⌕</span>
+              <span class="sr-only">Search notes</span>
+              <input id="search-input" type="search" placeholder="Search notes" />
+            </label>
+          </div>
+          <div class="library-meta"><span class="pulse-dot"></span><span id="library-status">Your ideas are safely saved</span></div>
+          <div id="notes-grid" class="notes-grid" aria-live="polite"></div>
+          <div id="empty-state" class="empty-state">
+            <span aria-hidden="true">✦</span>
+            <h3>No notes yet</h3>
+            <p>Your next great idea has a home here.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
+
